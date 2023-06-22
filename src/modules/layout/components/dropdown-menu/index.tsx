@@ -22,7 +22,7 @@ const DropdownMenu = () => {
 
   return (
     <div
-      onMouseEnter={() => setOpen(true)}
+      onMouseEnter={() => setOpen(false)}
       onMouseLeave={() => setOpen(false)}
       className="h-full"
     >

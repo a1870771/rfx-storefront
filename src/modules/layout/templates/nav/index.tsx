@@ -8,6 +8,7 @@ import clsx from "clsx"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import Image from "next/image"
 
 const Nav = () => {
   const { pathname } = useRouter()
@@ -41,26 +42,12 @@ const Nav = () => {
 
   return (
     <div
-      className={clsx("sticky top-0 inset-x-0 z-50 group", {
+      className={clsx("sticky transition-all duration-400 top-0 inset-x-0 z-50 group", {
         "!fixed": isHome,
-      })}
+      }, {"!-top-16": isScrolled})}
     >
-      <header
-        className={clsx(
-          "relative h-16 px-8 mx-auto transition-colors bg-transparent border-b border-transparent duration-200 group-hover:bg-white group-hover:border-gray-200",
-          {
-            "!bg-white !border-gray-200": !isHome || isScrolled,
-          },
-        )}
-      >
-        <nav
-          className={clsx(
-            "text-gray-900 flex items-center justify-between w-full h-full text-small-regular transition-colors duration-200",
-            {
-              "text-white group-hover:text-gray-900": isHome && !isScrolled,
-            },
-          )}
-        >
+      <header className="relative h-16 px-40 mx-auto bg-white">
+        <nav className="text-black flex items-center justify-between w-full h-full text-small-regular">
           <div className="flex-1 basis-0 h-full flex items-center">
             <div className="block small:hidden">
               <Hamburger setOpen={toggle} />
@@ -71,8 +58,13 @@ const Nav = () => {
           </div>
 
           <div className="flex items-center h-full">
-            <Link href="/" className="text-xl-semi uppercase">
-              Acme
+            <Link href="/">
+              <Image
+                src="/logo.svg"
+                width="300"
+                height="100"
+                alt="resonant effects">
+              </Image>
             </Link>
           </div>
 
