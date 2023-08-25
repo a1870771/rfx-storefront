@@ -15,7 +15,7 @@ const FeaturedProducts = () => {
         </Image>
         <div className="py-12 flex flex-col justify-center items-center text-center mb-16">
           <p className="text-2xl-regular text-gray-900 max-w-lg mb-4">
-            Hand-crafted analog effects pedals, made to order.
+            Hand-crafted audio effects pedals, made in Adelaide.
           </p>
           <UnderlineLink href="/store">Explore products</UnderlineLink>
         </div>

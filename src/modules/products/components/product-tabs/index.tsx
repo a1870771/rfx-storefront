@@ -20,7 +20,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       },
       {
         label: "Controls",
-        component: <ShippingInfoTab />,
+        component: <ShippingInfoTab product={product}/>,
       },
     ]
   }, [product])
@@ -64,7 +64,11 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
         <div className="flex flex-col gap-y-4">
           <div>
             <span className="font-semibold">Power</span>
-            <p>9V DC (runs on standard 2.1mm negative center 9V DC adapter)</p>
+            <p>9V DC (runs on standard 2.1mm negative center adapter)</p>
+          </div>
+          <div>
+            <span className="font-semibold">Current Draw</span>
+            <p>{product.metadata ? `${product.metadata.Current}` : "-"}</p>
           </div>
         </div>
         <div className="flex flex-col gap-y-4">
@@ -73,14 +77,10 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             <p>{product.weight ? `${product.weight} g` : "-"}</p>
           </div>
           <div>
-            <span className="font-semibold">Controls</span>
-            <p>{product.metadata ? `${product.metadata}` : "-"}</p>
-          </div>
-          <div>
             <span className="font-semibold">Dimensions</span>
             <p>
               {product.length && product.width && product.height
-                ? `${product.length}L x ${product.width}W x ${product.height}H`
+                ? `${product.length}mm x ${product.width}mm x ${product.height}mm`
                 : "-"}
             </p>
           </div>
@@ -95,18 +95,14 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
   )
 }
 
-const ShippingInfoTab = () => {
+const ShippingInfoTab = ({ product }: ProductTabsProps) => {
   return (
     <Tab.Panel className="text-small-regular py-8">
       <div className="grid grid-cols-1 gap-y-8">
         <div className="flex items-start gap-x-2">
-          <FastDelivery />
           <div>
-            <span className="font-semibold">Fast Shipping</span>
-            <p className="max-w-sm">
-              Your package will be shipped within 1 business day, at your pick up
-              location or in the comfort of your home.
-            </p>
+            <span className="font-semibold">{product.metadata ? `${product.metadata.Control1Name}` : "-" }</span>
+            <p>{product.metadata ? `${product.metadata.Control1Desc}` : "-"}</p>
           </div>
         </div>
         <div className="flex items-start gap-x-2">
